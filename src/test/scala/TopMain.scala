@@ -87,5 +87,10 @@ object TopMain extends App {
     :+ CIRCTTargetAnnotation(CIRCTTarget.SystemVerilog)
     :+ FirtoolOption("--disable-annotation-unknown")
     :+ FirtoolOption("--default-layer-specialization=enable")
+    :+ FirtoolOption("--preserve-values=named")
+    :+ FirtoolOption("--disable-all-randomization")
+    // :+ FirtoolOption("--disable-opt")
+    // :+ FirtoolOption("--lowering-options=disallowMuxInlining,disallowExpressionInliningInPorts,printDebugInfo")
+    // :+ FirtoolOption("--extract-branch-cover")
   )
 }

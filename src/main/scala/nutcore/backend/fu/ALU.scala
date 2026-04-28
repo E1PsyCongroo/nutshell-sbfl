@@ -102,7 +102,9 @@ class ALU(hasBru: Boolean = false) extends NutCoreModule {
     ALUOpType.xor  -> xorRes,
     ALUOpType.srl  -> (shsrc1  >> shamt),
     ALUOpType.or   -> (src1  |  src2),
-    ALUOpType.and  -> (src1  &  src2),
+    // insert BUG here
+    ALUOpType.and  -> (src1  |  src2),
+    // ALUOpType.and  -> (src1  &  src2),
     ALUOpType.sra  -> ((shsrc1.asSInt >> shamt).asUInt)
   ))
   val aluRes = Mux(ALUOpType.isWordOp(func), SignExt(res(31,0), 64), res)

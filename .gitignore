@@ -230,6 +230,9 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 ### C++ template
+# Compile commands
+compile_commands.json
+
 # Compiled Object files
 *.slo
 *.lo
@@ -351,3 +354,9 @@ fpga/.Xil/
 .vscode/
 .metals/
 .bloop
+
+# gdb tmp file
+.gdb_history
+
+# codex tmp file
+.codex
