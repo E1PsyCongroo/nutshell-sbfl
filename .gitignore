@@ -360,3 +360,5 @@ fpga/.Xil/
 
 # codex tmp file
 .codex
+
+passed/
