@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/backend/fu/CSR.scala	2026-05-11 13:36:13.405721146 +0800
++++ b/src/main/scala/nutcore/backend/fu/CSR.scala	2026-05-15 14:26:41.708553882 +0800
+@@ -732,7 +732,7 @@
+       // trapTarget := stvec(VAddrBits-1. 0)
+     }.otherwise {
+       mcause := causeNO
+-      mepc := SignExt(io.cfIn.pc, XLEN)
++      mepc := SignExt(io.cfIn.pc + 4.U, XLEN)
+       mstatusNew.mpp := privilegeMode
+       mstatusNew.pie.m := mstatusOld.ie.m
+       mstatusNew.ie.m := false.B

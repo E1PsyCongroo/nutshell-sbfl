@@ -1,0 +1,15 @@
+diff --git a/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala b/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
+index 1234567..abcdefg 100644
+--- a/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
++++ b/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
+@@ -404,8 +404,8 @@
+   ))
+   val rdataSel = if (XLEN == 32) rdataSel32 else rdataSel64
+   val rdataPartialLoad = LookupTree(func, List(
+-      LSUOpType.lb   -> SignExt(rdataSel(7, 0) , XLEN),
++      LSUOpType.lb   -> ZeroExt(rdataSel(7, 0) , XLEN),
+       LSUOpType.lh   -> SignExt(rdataSel(15, 0), XLEN),
+       LSUOpType.lw   -> SignExt(rdataSel(31, 0), XLEN),
+-      LSUOpType.lbu  -> ZeroExt(rdataSel(7, 0) , XLEN),
++      LSUOpType.lbu  -> SignExt(rdataSel(7, 0) , XLEN),
+       LSUOpType.lhu  -> ZeroExt(rdataSel(15, 0), XLEN),

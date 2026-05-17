@@ -1,0 +1,21 @@
+--- a/src/main/scala/nutcore/backend/fu/MDU.scala	2026-05-11 13:36:13.405721146 +0800
++++ b/src/main/scala/nutcore/backend/fu/MDU.scala	2026-05-15 14:35:31.095214906 +0800
+@@ -87,7 +87,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+   val (aSign, aVal) = abs(a, io.sign)
+   val (bSign, bVal) = abs(b, io.sign)
+   val aSignReg = RegEnable(aSign, newReq)
+-  val qSignReg = RegEnable((aSign ^ bSign) && !divBy0, newReq)
++  val qSignReg = RegEnable((aSign ^ bSign), newReq)
+   val bReg = RegEnable(bVal, newReq)
+   val aValx2Reg = RegEnable(Cat(aVal, "b0".U), newReq)
+
+@@ -104,8 +104,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+     //   canSkipShift = 64.U + Log2(bVal, XLEN) - Log2(aVal, XLEN)
+     //   = (64.U | Log2(bVal, XLEN)) - Log2(aVal, XLEN)  // since Log2(bVal, XLEN) < 64.U
+     val canSkipShift = (len.U | Log2(bReg)) - Log2(aValx2Reg)
+-    // When divide by 0, the quotient should be all 1's.
+-    // Therefore we can not shift in 0s here.
+     // We do not skip any shift to avoid this.
+-    cnt.value := Mux(divBy0, 0.U, Mux(canSkipShift >= (len-1).U, (len-1).U, canSkipShift))
++    cnt.value := Mux(canSkipShift >= (len-1).U, (len-1).U, canSkipShift)
+     state := s_shift

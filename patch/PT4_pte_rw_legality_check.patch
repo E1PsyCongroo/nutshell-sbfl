@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/mem/EmbeddedTLB.scala	2026-05-11 13:36:13.409721498 +0800
++++ b/src/main/scala/nutcore/mem/EmbeddedTLB.scala	2026-05-15 14:26:14.023996231 +0800
+@@ -301,7 +301,7 @@
+           state := s_idle
+           needFlush := false.B
+         }.elsewhen (!(missflag.r || missflag.x) && (level===3.U || level===2.U)) {
+-          when(!missflag.v || (!missflag.r && missflag.w)) { //TODO: fix needflush
++          when(!missflag.v) { //TODO: fix needflush
+             if(tlbname == "itlb") { state := s_wait_resp } else { state := s_miss_slpf }
+             if(tlbname == "itlb") { missIPF := true.B }
+             if(tlbname == "dtlb") {

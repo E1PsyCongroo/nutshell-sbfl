@@ -1,0 +1,14 @@
+diff --git a/src/main/scala/nutcore/backend/fu/ALU.scala b/src/main/scala/nutcore/backend/fu/ALU.scala
+index 1234567..abcdefg 100644
+--- a/src/main/scala/nutcore/backend/fu/ALU.scala
++++ b/src/main/scala/nutcore/backend/fu/ALU.scala
+@@ -105,7 +105,7 @@
+     ALUOpType.or   -> (src1  |  src2),
+     ALUOpType.and  -> (src1  &  src2),
+     ALUOpType.sra  -> ((shsrc1.asSInt >> shamt).asUInt)
+   ))
+-  val aluRes = Mux(ALUOpType.isWordOp(func), SignExt(res(31,0), 64), res)
++  val aluRes = Mux(ALUOpType.isWordOp(func), ZeroExt(res(31,0), 64), res)
+
+   val branchOpTable = List(
+     ALUOpType.getBranchType(ALUOpType.beq)  -> !xorRes.orR,
