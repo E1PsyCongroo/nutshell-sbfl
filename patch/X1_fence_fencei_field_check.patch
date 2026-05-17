@@ -1,0 +1,9 @@
+--- a/src/main/scala/nutcore/isa/RVZifencei.scala	2026-05-17 10:00:00.000000000 +0800
++++ b/src/main/scala/nutcore/isa/RVZifencei.scala	2026-05-17 10:01:00.000000000 +0800
+@@ -23,7 +23,7 @@
+ object RVZifenceiInstr extends HasInstrType {
+-  def FENCEI = BitPat("b000000000000_00000_001_00000_0001111")
++  def FENCEI = BitPat("b????????????_?????_001_?????_0001111")
+
+   val table = Array(
+     FENCEI -> List(InstrB, FuType.mou, MOUOpType.fencei)
