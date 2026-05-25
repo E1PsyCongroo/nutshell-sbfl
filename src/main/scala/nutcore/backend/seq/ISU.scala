@@ -62,8 +62,7 @@ class ISU(implicit val p: NutCoreConfig) extends NutCoreModule with HasRegFilePa
   // out1
   io.out.bits.data.src1 := Mux1H(List(
     (io.in(0).bits.ctrl.src1Type === SrcType.pc) -> SignExt(io.in(0).bits.cf.pc, AddrBits),
-    // src1ForwardNextCycle -> io.forward.wb.rfData, //io.forward.wb.rfData,
-    src1ForwardNextCycle -> (io.forward.wb.rfData + 1.U), //io.forward.wb.rfData,
+    src1ForwardNextCycle -> io.forward.wb.rfData, //io.forward.wb.rfData,
     (src1Forward && !src1ForwardNextCycle) -> io.wb.rfData, //io.wb.rfData,
     ((io.in(0).bits.ctrl.src1Type =/= SrcType.pc) && !src1ForwardNextCycle && !src1Forward) -> rf.read(rfSrc1)
   ))

@@ -81,6 +81,15 @@ emu: sim-verilog
 emu-run: sim-verilog
 	$(MAKE) -C ./difftest emu-run RTL_SUFFIX=$(RTL_SUFFIX)
 
+sbfl: sim-verilog
+	$(MAKE) -C ./sbfl build
+	$(MAKE) -C ./difftest emu XFUZZ=1 EMU_COVERAGE=1 WITH_CHISELDB=0 WITH_CONSTANTIN=0 RTL_SUFFIX=$(RTL_SUFFIX)
+
+case-sbfl-run: sbfl
+	mkdir -p ./logs/$(IMAGE)
+	$(BUILD_DIR)/fuzzer -f -c "verilator.expr,verilator.branch" --max-iters 10 --top-pass 50 --top-sus 50 \
+	--corpus-input "./case/build/$(IMAGE).bin" --corpus-output ./logs/$(IMAGE)/passed | tee ./logs/$(IMAGE)/sbfl.log
+
 simv: sim-verilog
 	$(MAKE) -C ./difftest simv WITH_CHISELDB=0 WITH_CONSTANTIN=0 RTL_SUFFIX=$(RTL_SUFFIX)
 
@@ -96,4 +105,4 @@ bsp:
 idea:
 	mill -i mill.idea.GenIdea/idea
 
-.PHONY: verilog emu clean help $(REF_SO)
+.PHONY: verilog emu clean help $(REF_SO) sbfl case-sbfl-run
