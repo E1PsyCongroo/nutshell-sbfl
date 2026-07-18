@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/backend/fu/MDU.scala
++++ b/src/main/scala/nutcore/backend/fu/MDU.scala
+@@ -115,7 +115,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+     val enough = hi.asUInt >= bReg.asUInt
+     shiftReg := Cat(Mux(enough, hi - bReg, hi)(len - 1, 0), lo, enough)
+     cnt.inc()
+-    when (cnt.value === (len-1).U) { state := s_finish }
++    when (cnt.value === len.U) { state := s_finish }
+   } .elsewhen (state === s_finish) {
+     state := s_idle
+   }

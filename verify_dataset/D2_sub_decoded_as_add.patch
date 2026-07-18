@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/isa/RVI.scala
++++ b/src/main/scala/nutcore/isa/RVI.scala
+@@ -66,7 +66,7 @@ object RV32I_ALUInstr extends HasInstrType with HasNutCoreParameter {
+     SRL            -> List(InstrR, FuType.alu, ALUOpType.srl),
+     OR             -> List(InstrR, FuType.alu, ALUOpType.or ),
+     AND            -> List(InstrR, FuType.alu, ALUOpType.and),
+-    SUB            -> List(InstrR, FuType.alu, ALUOpType.sub),
++    SUB            -> List(InstrR, FuType.alu, ALUOpType.add),
+     SRA            -> List(InstrR, FuType.alu, ALUOpType.sra),
+
+     AUIPC          -> List(InstrU, FuType.alu, ALUOpType.add),

@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
++++ b/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
+@@ -404,7 +404,7 @@ class LSExecUnit extends NutCoreModule {
+   ))
+   val rdataSel = if (XLEN == 32) rdataSel32 else rdataSel64
+   val rdataPartialLoad = LookupTree(func, List(
+-      LSUOpType.lb   -> SignExt(rdataSel(7, 0) , XLEN),
++      LSUOpType.lb   -> Cat(Fill(XLEN - 8, rdataLatch(XLEN - 1)), rdataSel(7, 0)),
+       LSUOpType.lh   -> SignExt(rdataSel(15, 0), XLEN),
+       LSUOpType.lw   -> SignExt(rdataSel(31, 0), XLEN),
+       LSUOpType.lbu  -> ZeroExt(rdataSel(7, 0) , XLEN),

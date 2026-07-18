@@ -1,0 +1,13 @@
+diff --git a/src/main/scala/nutcore/backend/seq/ISU.scala b/src/main/scala/nutcore/backend/seq/ISU.scala
+index e051c49..871a189 100644
+--- a/src/main/scala/nutcore/backend/seq/ISU.scala
++++ b/src/main/scala/nutcore/backend/seq/ISU.scala
+@@ -62,7 +62,7 @@ class ISU(implicit val p: NutCoreConfig) extends NutCoreModule with HasRegFilePa
+   // out1
+   io.out.bits.data.src1 := Mux1H(List(
+     (io.in(0).bits.ctrl.src1Type === SrcType.pc) -> SignExt(io.in(0).bits.cf.pc, AddrBits),
+-    src1ForwardNextCycle -> io.forward.wb.rfData, //io.forward.wb.rfData,
++    src1ForwardNextCycle -> io.wb.rfData, //io.forward.wb.rfData,
+     (src1Forward && !src1ForwardNextCycle) -> io.wb.rfData, //io.wb.rfData,
+     ((io.in(0).bits.ctrl.src1Type =/= SrcType.pc) && !src1ForwardNextCycle && !src1Forward) -> rf.read(rfSrc1)
+   ))

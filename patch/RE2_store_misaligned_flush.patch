@@ -1,8 +1,0 @@
---- a/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala	2026-05-17 10:00:00.000000000 +0800
-+++ b/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala	2026-05-17 10:01:00.000000000 +0800
-@@ -376,7 +376,7 @@
-     wmask = reqWmask,
-     cmd = Mux(isStore, SimpleBusCmd.write, SimpleBusCmd.read))
--  dmem.req.valid := valid && (state === s_idle) && !io.loadAddrMisaligned && !io.storeAddrMisaligned
-+  dmem.req.valid := valid && (state === s_idle) && !io.loadAddrMisaligned
-   dmem.resp.ready := true.B

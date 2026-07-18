@@ -1,7 +1,0 @@
---- a/src/main/scala/nutcore/backend/fu/CSR.scala	2026-05-17 10:00:00.000000000 +0800
-+++ b/src/main/scala/nutcore/backend/fu/CSR.scala	2026-05-17 10:01:00.000000000 +0800
-@@ -495,7 +495,7 @@
-   val wen = (valid && func =/= CSROpType.jmp) && (addr =/= Satp.U || satpLegalMode) && !io.isBackendException
--  val isIllegalMode  = privilegeMode < addr(9, 8)
-+  val isIllegalMode  = false.B
-   val justRead = (func === CSROpType.set || func === CSROpType.seti) && src1 === 0.U

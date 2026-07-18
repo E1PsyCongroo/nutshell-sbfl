@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/backend/fu/LSU.scala
++++ b/src/main/scala/nutcore/backend/fu/LSU.scala
+@@ -699,7 +699,7 @@ class LSU extends NutCoreModule with HasLSUConst {
+     LookupTree(sizeEncode, List(
+       "b00".U -> 0x1.U, //0001 << addr(2:0)
+       "b01".U -> 0x3.U, //0011
+-      "b10".U -> 0xf.U, //1111
++      "b10".U -> 0x3.U, //1111
+       "b11".U -> 0xff.U //11111111
+     )) << addr(2, 0)
+   }

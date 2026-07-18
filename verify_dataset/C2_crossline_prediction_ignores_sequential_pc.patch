@@ -1,0 +1,20 @@
+diff --git a/src/main/scala/nutcore/frontend/IFU.scala b/src/main/scala/nutcore/frontend/IFU.scala
+index 759604a..a66a684 100644
+--- a/src/main/scala/nutcore/frontend/IFU.scala
++++ b/src/main/scala/nutcore/frontend/IFU.scala
+@@ -335,7 +335,7 @@ class IFU_inorder extends NutCoreModule with HasResetVector {
+   val crosslineJumpForceTgt = crosslineJumpLatch && !bp1.io.flush
+ 
+   // predicted next pc
+-  val pnpc = Mux(crosslineJump, snpc, bp1.io.out.target)
++  val pnpc = bp1.io.out.target
+   val pbrIdx = bp1.io.brIdx
+   val npc = Mux(io.redirect.valid, io.redirect.target, Mux(crosslineJumpLatch, crosslineJumpTarget, Mux(bp1.io.out.valid, pnpc, snpc)))
+   val npcIsSeq = Mux(io.redirect.valid , false.B, Mux(crosslineJumpLatch, false.B, Mux(crosslineJump, true.B, Mux(bp1.io.out.valid, false.B, true.B))))
+@@ -392,4 +392,4 @@ class IFU_inorder extends NutCoreModule with HasResetVector {
+ 
+   BoringUtils.addSource(BoolStopWatch(io.imem.req.valid, io.imem.resp.fire), "perfCntCondMimemStall")
+   BoringUtils.addSource(WireInit(io.flushVec.orR), "perfCntCondMifuFlush")
+-}
+\ No newline at end of file
++}

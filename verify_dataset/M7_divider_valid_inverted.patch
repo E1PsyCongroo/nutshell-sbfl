@@ -1,0 +1,10 @@
+--- a/src/main/scala/nutcore/backend/fu/MDU.scala
++++ b/src/main/scala/nutcore/backend/fu/MDU.scala
+@@ -125,7 +125,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+   val resR = Mux(aSignReg, -r, r)
+   io.out.bits := Cat(resR, resQ)
+
+-  io.out.valid := (if (HasDiv) (state === s_finish) else io.in.valid) // FIXME: should deal with ready = 0
++  io.out.valid := (if (HasDiv) (state =/= s_finish) else io.in.valid) // FIXME: should deal with ready = 0
+   io.in.ready := (state === s_idle)
+ }

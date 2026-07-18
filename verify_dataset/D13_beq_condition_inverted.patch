@@ -1,0 +1,13 @@
+diff --git a/src/main/scala/nutcore/backend/fu/ALU.scala b/src/main/scala/nutcore/backend/fu/ALU.scala
+index 70309a3..fadd735 100644
+--- a/src/main/scala/nutcore/backend/fu/ALU.scala
++++ b/src/main/scala/nutcore/backend/fu/ALU.scala
+@@ -108,7 +108,7 @@ class ALU(hasBru: Boolean = false) extends NutCoreModule {
+   val aluRes = Mux(ALUOpType.isWordOp(func), SignExt(res(31,0), 64), res)
+ 
+   val branchOpTable = List(
+-    ALUOpType.getBranchType(ALUOpType.beq)  -> !xorRes.orR,
++    ALUOpType.getBranchType(ALUOpType.beq)  -> xorRes.orR,
+     ALUOpType.getBranchType(ALUOpType.blt)  -> slt,
+     ALUOpType.getBranchType(ALUOpType.bltu) -> sltu
+   )

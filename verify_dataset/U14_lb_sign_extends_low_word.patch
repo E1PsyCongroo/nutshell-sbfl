@@ -1,0 +1,13 @@
+diff --git a/src/main/scala/nutcore/backend/fu/LSU.scala b/src/main/scala/nutcore/backend/fu/LSU.scala
+index 10857fc..0b5ca3b 100644
+--- a/src/main/scala/nutcore/backend/fu/LSU.scala
++++ b/src/main/scala/nutcore/backend/fu/LSU.scala
+@@ -827,7 +827,7 @@ class LSU extends NutCoreModule with HasLSUConst {
+     "b111".U -> rdata(63, 56)
+   ))
+   val rdataPartialLoad = LookupTree(moq(moqidxResp).func, List(
+-      LSUOpType.lb   -> SignExt(rdataSel(7, 0) , XLEN),
++      LSUOpType.lb   -> SignExt(rdataSel(31, 0) , XLEN),
+       LSUOpType.lh   -> SignExt(rdataSel(15, 0), XLEN),
+       LSUOpType.lw   -> SignExt(rdataSel(31, 0), XLEN),
+       LSUOpType.ld   -> SignExt(rdataSel(63, 0), XLEN),

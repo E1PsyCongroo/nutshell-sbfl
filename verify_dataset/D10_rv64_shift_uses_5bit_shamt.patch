@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/backend/fu/ALU.scala
++++ b/src/main/scala/nutcore/backend/fu/ALU.scala
+@@ -94,7 +94,7 @@ class ALU(hasBru: Boolean = false) extends NutCoreModule {
+     ALUOpType.srlw -> ZeroExt(src1(31,0), XLEN),
+     ALUOpType.sraw -> SignExt(src1(31,0), XLEN)
+   ))
+-  val shamt = Mux(ALUOpType.isWordOp(func), src2(4, 0), if (XLEN == 64) src2(5, 0) else src2(4, 0))
++  val shamt = src2(4, 0)
+   val res = LookupTreeDefault(func(3, 0), adderRes, List(
+     ALUOpType.sll  -> ((shsrc1  << shamt)(XLEN-1, 0)),
+     ALUOpType.slt  -> ZeroExt(slt, XLEN),

@@ -1,0 +1,11 @@
+--- a/src/main/scala/nutcore/backend/fu/MDU.scala
++++ b/src/main/scala/nutcore/backend/fu/MDU.scala
+@@ -87,7 +87,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+   val (aSign, aVal) = abs(a, io.sign)
+   val (bSign, bVal) = abs(b, io.sign)
+   val aSignReg = RegEnable(aSign, newReq)
+-  val qSignReg = RegEnable((aSign ^ bSign) && !divBy0, newReq)
++  val qSignReg = RegEnable(aSign && !divBy0, newReq)
+   val bReg = RegEnable(bVal, newReq)
+   val aValx2Reg = RegEnable(Cat(aVal, "b0".U), newReq)
+

@@ -1,7 +1,0 @@
---- a/src/main/scala/nutcore/backend/seq/EXU.scala	2026-05-17 10:00:00.000000000 +0800
-+++ b/src/main/scala/nutcore/backend/seq/EXU.scala	2026-05-17 10:01:00.000000000 +0800
-@@ -71,2 +71,2 @@
--  csr.io.cfIn.exceptionVec(loadAddrMisaligned) := lsu.io.loadAddrMisaligned
--  csr.io.cfIn.exceptionVec(storeAddrMisaligned) := lsu.io.storeAddrMisaligned
-+  csr.io.cfIn.exceptionVec(loadAddrMisaligned) := lsu.io.storeAddrMisaligned
-+  csr.io.cfIn.exceptionVec(storeAddrMisaligned) := lsu.io.loadAddrMisaligned

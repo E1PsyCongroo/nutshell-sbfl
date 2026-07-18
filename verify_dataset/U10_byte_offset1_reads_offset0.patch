@@ -1,0 +1,20 @@
+--- a/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
++++ b/src/main/scala/nutcore/backend/fu/UnpipelinedLSU.scala
+@@ -388,7 +388,7 @@ class LSExecUnit extends NutCoreModule {
+   val rdataLatch = RegNext(rdata)
+   val rdataSel64 = LookupTree(addrLatch(2, 0), List(
+     "b000".U -> rdataLatch(63, 0),
+-    "b001".U -> rdataLatch(63, 8),
++    "b001".U -> rdataLatch(63, 0),
+     "b010".U -> rdataLatch(63, 16),
+     "b011".U -> rdataLatch(63, 24),
+     "b100".U -> rdataLatch(63, 32),
+@@ -398,7 +398,7 @@ class LSExecUnit extends NutCoreModule {
+   ))
+   val rdataSel32 = LookupTree(addrLatch(1, 0), List(
+     "b00".U -> rdataLatch(31, 0),
+-    "b01".U -> rdataLatch(31, 8),
++    "b01".U -> rdataLatch(31, 0),
+     "b10".U -> rdataLatch(31, 16),
+     "b11".U -> rdataLatch(31, 24)
+   ))

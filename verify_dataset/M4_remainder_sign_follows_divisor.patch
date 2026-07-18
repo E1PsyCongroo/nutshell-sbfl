@@ -1,0 +1,20 @@
+--- a/src/main/scala/nutcore/backend/fu/MDU.scala
++++ b/src/main/scala/nutcore/backend/fu/MDU.scala
+@@ -86,7 +86,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+
+   val (aSign, aVal) = abs(a, io.sign)
+   val (bSign, bVal) = abs(b, io.sign)
+-  val aSignReg = RegEnable(aSign, newReq)
++  val rSignReg = RegEnable(Mux(divBy0, aSign, bSign), newReq)
+   val qSignReg = RegEnable((aSign ^ bSign) && !divBy0, newReq)
+   val bReg = RegEnable(bVal, newReq)
+   val aValx2Reg = RegEnable(Cat(aVal, "b0".U), newReq)
+@@ -122,7 +122,7 @@ class Divider(len: Int = 64) extends NutCoreModule {
+
+   val r = hi(len, 1)
+   val resQ = Mux(qSignReg, -lo, lo)
+-  val resR = Mux(aSignReg, -r, r)
++  val resR = Mux(rSignReg, -r, r)
+   io.out.bits := Cat(resR, resQ)
+
+   io.out.valid := (if (HasDiv) (state === s_finish) else io.in.valid) // FIXME: should deal with ready = 0
